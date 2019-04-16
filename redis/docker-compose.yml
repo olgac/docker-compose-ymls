@@ -1,0 +1,17 @@
+version: '3.6'
+#docker network create --driver=overlay --attachable olgac
+services:
+  redis:
+    image: redis:5.0.4-alpine
+    hostname: redis
+    networks:
+      - olgac
+    ports:
+      - 6379:6379
+    volumes:
+      - redis-data:/data
+networks:
+  olgac:
+    external: true
+volumes:
+  redis-data:

@@ -1,0 +1,16 @@
+version: '3.6'
+#docker network create --driver=overlay --attachable olgac
+#htpasswd -nb -B admin Oms12345! | cut -d ":" -f 2
+services:
+  portainer:
+    image: portainer/portainer:1.20.2
+    command: --tlsskipverify --admin-password "$$2y$$05$$wyalDHmEqEPkpUpE52zqSe6NK8B3xVqWrJdNJSTOBeudFWt2PtQom"
+    ports:
+      - 9000:9000
+    networks:
+      - olgac
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+networks:
+  olgac:
+    external: true

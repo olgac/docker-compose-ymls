@@ -1,0 +1,17 @@
+version: '3.6'
+#docker network create --driver=overlay --attachable olgac
+services:
+  consul:
+    image: consul:1.4.4
+    hostname: consul
+    networks:
+      - olgac
+    ports:
+      - 8500:8500
+    volumes:
+      - consul-data:/consul/data
+networks:
+  olgac:
+    external: true
+volumes:
+  consul-data:

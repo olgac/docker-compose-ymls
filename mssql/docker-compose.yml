@@ -1,0 +1,20 @@
+version: '3.6'
+#docker network create --driver=overlay --attachable olgac
+services:
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2017-CU12-ubuntu
+    networks:
+      - olgac
+    ports:
+      - 1433:1433
+    volumes:
+      - mssql-data:/var/opt/mssql
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Abc1234567890
+      - MSSQL_PID=Express
+networks:
+  olgac:
+    external: true
+volumes:
+  mssql-data:

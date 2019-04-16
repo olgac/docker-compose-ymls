@@ -1,0 +1,16 @@
+version: '3.6'
+#docker network create --driver=overlay --attachable olgac
+services:
+  mongo:
+    image: mongo:4.0.7-xenial
+    networks:
+      - olgac
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo-data:/data
+networks:
+  olgac:
+    external: true
+volumes:
+  mongo-data:

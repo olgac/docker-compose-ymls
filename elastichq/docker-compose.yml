@@ -1,0 +1,14 @@
+version: '3.6'
+#docker network create --driver=overlay --attachable olgac
+services:
+  elastichq:
+    image: elastichq/elasticsearch-hq:release-v3.5.0
+    environment:
+      - HQ_DEFAULT_URL=http://elasticsearch:9200
+    ports:
+      - 5000:5000
+    networks:
+      - olgac
+networks:
+  olgac:
+    external: true

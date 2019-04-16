@@ -1,0 +1,17 @@
+version: '3.6'
+#docker network create --driver=overlay --attachable olgac
+services:
+  couchbase:
+    image: couchbase:community-6.0.0
+    networks:
+      - olgac
+    ports:
+      - 8091-8094:8091-8094
+      - 11210:11210
+    volumes:
+      - couchbase-data:/opt/couchbase/var
+networks:
+  olgac:
+    external: true
+volumes:
+  couchbase-data:
