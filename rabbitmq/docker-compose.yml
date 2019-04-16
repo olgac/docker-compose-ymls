@@ -1,5 +1,4 @@
 version: '3.6'
-#docker network create --driver=overlay --attachable olgac
 services:
   rabbitmq:
     image: rabbitmq:3.7.13-management-alpine

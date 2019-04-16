@@ -1,10 +1,10 @@
 version: '3.6'
-#docker network create --driver=overlay --attachable olgac
 #htpasswd -nb -B admin Oms12345! | cut -d ":" -f 2
+#replace $ to $$
 services:
   portainer:
     image: portainer/portainer:1.20.2
-    command: --tlsskipverify --admin-password "$$2y$$05$$wyalDHmEqEPkpUpE52zqSe6NK8B3xVqWrJdNJSTOBeudFWt2PtQom"
+    command: --tlsskipverify --admin-password "$$2y$$05$$t85MUYihRu5smdgE3CEJLeCd6MXTjcGCxGb41UZp2d48Tr9UP1KBq"
     ports:
       - 9000:9000
     networks:

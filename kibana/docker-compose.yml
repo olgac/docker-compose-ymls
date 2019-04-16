@@ -1,5 +1,4 @@
 version: '3.6'
-#docker network create --driver=overlay --attachable olgac
 services:
   kibana:
     image: docker.elastic.co/kibana/kibana:6.6.2

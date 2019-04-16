@@ -1,5 +1,4 @@
 version: '3.6'
-#docker network create --driver=overlay --attachable olgac
 services:
   mongo:
     image: mongo:4.0.7-xenial

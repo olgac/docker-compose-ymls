@@ -1,5 +1,4 @@
 version: '3.6'
-#docker network create --driver=overlay --attachable olgac
 services:
   mssql:
     image: mcr.microsoft.com/mssql/server:2017-CU12-ubuntu

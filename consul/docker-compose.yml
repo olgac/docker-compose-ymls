@@ -1,5 +1,4 @@
 version: '3.6'
-#docker network create --driver=overlay --attachable olgac
 services:
   consul:
     image: consul:1.4.4

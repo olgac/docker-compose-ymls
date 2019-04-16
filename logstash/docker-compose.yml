@@ -1,5 +1,4 @@
 version: '3.6'
-#docker network create --driver=overlay --attachable olgac
 services:
   logstash:
     image: docker.elastic.co/logstash/logstash:6.6.2

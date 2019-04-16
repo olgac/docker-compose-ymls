@@ -1,5 +1,5 @@
 version: '3.6'
-#docker network create --driver=overlay --attachable olgac
+services:
   mountebank:
     image: andyrbell/mountebank:2.0.0
     networks:
