@@ -7,7 +7,7 @@ services:
     ports:
       - 5000:5000
     networks:
-      - olgac
+      - local
 networks:
-  olgac:
+  local:
     external: true

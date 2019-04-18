@@ -3,11 +3,11 @@ services:
   mountebank:
     image: andyrbell/mountebank:2.0.0
     networks:
-      - olgac
+      - local
     ports:
       - 2525:2525
       - 20001:20001
       - 30001:30001
 networks:
-  olgac:
+  local:
     external: true

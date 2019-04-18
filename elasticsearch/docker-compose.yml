@@ -4,7 +4,7 @@ services:
     image: docker.elastic.co/elasticsearch/elasticsearch:6.6.2
     hostname: elasticsearch
     networks:
-      - olgac
+      - local
     ports:
       - 9200:9200
       - 9300:9300
@@ -16,7 +16,7 @@ services:
     volumes:
       - elasticsearch-data:/usr/share/elasticsearch/data
 networks:
-  olgac:
+  local:
     external: true
 volumes:
   elasticsearch-data:

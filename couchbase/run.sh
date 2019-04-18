@@ -4,7 +4,7 @@ echo "$(date) Initializing swarm mode"
 docker swarm init 2>/dev/null
 
 echo "$(date) Creating overlay network"
-docker network create --driver=overlay --attachable olgac
+docker network create --driver=overlay --attachable local
 
 echo "$(date) Deploying service"
 docker stack deploy -c docker-compose.yml couchbase
@@ -25,7 +25,7 @@ echo "$(date) Setting credentials"
 curl -v http://127.0.0.1:8091/settings/web -d port=8091 -d username=Administrator -d password=password 2>/dev/null
 
 echo "$(date) Setting memory optimized indexes"
-curl -i -u Administrator:password POST http://127.0.0.1:8091/settings/indexes -d 'storageMode=forestdb' 2>/dev/null
+curl -i -u Administrator:password POST http://127.0.0.1:8091/settings/indexes -d 'storageMode=memory_optimized' 2>/dev/null
 
 echo -e "\n$(date) Loading buckets"
 curl -v -u Administrator:password POST http://127.0.0.1:8091/pools/default/buckets -d name=AEOrders -d authType=sasl -d saslPassword=123qwe -d bucketType=couchbase -d flushEnabled=1 -d ramQuotaMB=100 2>/dev/null

@@ -8,12 +8,12 @@ services:
     depends_on:
       - elasticsearch
     networks:
-      - olgac
+      - local
     command: ["-e", "input { gelf { port => 25000 type => docker } } output { elasticsearch { hosts => [\"elasticsearch\"] index => \"%{tag}-%{+YYYY.MM.dd}\" } }"]
     logging:
       options:
         max-size: "10m"
         max-file: "5"
 networks:
-  olgac:
+  local:
     external: true

@@ -3,7 +3,7 @@ services:
   mssql:
     image: mcr.microsoft.com/mssql/server:2017-CU12-ubuntu
     networks:
-      - olgac
+      - local
     ports:
       - 1433:1433
     volumes:
@@ -13,7 +13,7 @@ services:
       - SA_PASSWORD=Abc1234567890
       - MSSQL_PID=Express
 networks:
-  olgac:
+  local:
     external: true
 volumes:
   mssql-data:

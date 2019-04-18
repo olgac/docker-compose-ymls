@@ -1,16 +1,16 @@
 version: '3.7'
 services:
   couchbase:
-    image: couchbase:community-6.0.0
+    image: couchbase:6.0.1
     networks:
-      - olgac
+      - local
     ports:
       - 8091-8094:8091-8094
       - 11210:11210
     volumes:
       - couchbase-data:/opt/couchbase/var
 networks:
-  olgac:
+  local:
     external: true
 volumes:
   couchbase-data:

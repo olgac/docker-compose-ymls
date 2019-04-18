@@ -3,13 +3,13 @@ services:
   mongo:
     image: mongo:4.0.7-xenial
     networks:
-      - olgac
+      - local
     ports:
       - 27017:27017
     volumes:
       - mongo-data:/data
 networks:
-  olgac:
+  local:
     external: true
 volumes:
   mongo-data:

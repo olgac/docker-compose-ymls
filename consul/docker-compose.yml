@@ -4,13 +4,13 @@ services:
     image: consul:1.4.4
     hostname: consul
     networks:
-      - olgac
+      - local
     ports:
       - 8500:8500
     volumes:
       - consul-data:/consul/data
 networks:
-  olgac:
+  local:
     external: true
 volumes:
   consul-data:

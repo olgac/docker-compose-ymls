@@ -4,13 +4,13 @@ services:
     image: redis:5.0.4-alpine
     hostname: redis
     networks:
-      - olgac
+      - local
     ports:
       - 6379:6379
     volumes:
       - redis-data:/data
 networks:
-  olgac:
+  local:
     external: true
 volumes:
   redis-data:

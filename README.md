@@ -11,7 +11,7 @@
 -mongo
 -redis
 
-docker network create --driver=overlay --attachable olgac
+docker network create --driver=overlay --attachable local
 
 curl localhost:9200/_cat/health
 curl localhost:9200/_cat/nodes?v

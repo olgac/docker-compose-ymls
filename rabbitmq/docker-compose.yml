@@ -5,7 +5,7 @@ services:
     #image: rabbitmq:3.8.0-beta.3-management-alpine
     hostname: rabbitmq
     networks:
-      - olgac
+      - local
     environment:
       - RABBITMQ_DEFAULT_USER=sa
       - RABBITMQ_DEFAULT_PASS=Sa123456
@@ -16,7 +16,7 @@ services:
     volumes:
       - rabbitmq-data:/var/lib/rabbitmq
 networks:
-  olgac:
+  local:
     external: true
 volumes:
   rabbitmq-data:
