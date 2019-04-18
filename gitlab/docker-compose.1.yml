@@ -1,0 +1,28 @@
+version: "3.6" 
+services:
+  web:
+    image: gitlab/gitlab-ce:11.9.8-ce.0
+    hostname: gitlab.olgac.com
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://gitlab.olgac.com:9090'
+        gitlab_rails['gitlab_shell_ssh_port'] = 2224
+    networks:
+      - gitlab-network
+    ports:
+      - '80:80'
+      - '443:443'
+      - '9090:9090'
+      - '2224:22'
+    volumes:
+      - gitlab-config:/etc/gitlab
+      - gitlab-logs:/var/log/gitlab
+      - gitlab-data:/var/opt/gitlab
+
+networks:
+  gitlab-network:
+    name: gitlab-network
+volumes:
+  gitlab-config:
+  gitlab-logs:
+  gitlab-data:

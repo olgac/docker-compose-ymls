@@ -1,4 +1,4 @@
-version: '3.6'
+version: '3.7'
 #htpasswd -nb -B admin Oms12345! | cut -d ":" -f 2
 #replace $ to $$
 services:

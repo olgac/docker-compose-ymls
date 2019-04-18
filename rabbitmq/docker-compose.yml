@@ -1,4 +1,4 @@
-version: '3.6'
+version: '3.7'
 services:
   rabbitmq:
     image: rabbitmq:3.7.13-management-alpine
@@ -17,5 +17,6 @@ services:
       - rabbitmq-data:/var/lib/rabbitmq
 networks:
   olgac:
+    external: true
 volumes:
   rabbitmq-data:
