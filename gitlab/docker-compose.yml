@@ -14,7 +14,7 @@ services:
       - '30080:80'
       - '30022:22'
     environment:
-      - GITLAB_OMNIBUS_CONFIG="external_url 'http://gitlab.olgac.com:30080'; gitlab_rails['gitlab_shell_ssh_port'] = 30022; gitlab_rails['lfs_enabled'] = 30022"
+      - GITLAB_OMNIBUS_CONFIG="external_url 'http://gitlab.olgac.com:30080'; gitlab_rails['gitlab_shell_ssh_port'] = 30022; gitlab_rails['lfs_enabled'] = false"
     volumes:
       - gitlab-config:/etc/gitlab
       - gitlab-logs:/var/log/gitlab
