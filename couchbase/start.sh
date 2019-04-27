@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#echo "127.0.0.1		couchbase" | sudo tee -a /etc/hosts
+
+ROOT_PATH=$(dirname "$0")
+
 echo "$(date) Initializing swarm mode"
 docker swarm init 2>/dev/null
 
@@ -7,7 +11,7 @@ echo "$(date) Creating overlay network"
 docker network create --driver=overlay --attachable local
 
 echo "$(date) Deploying service"
-docker stack deploy -c docker-compose.yml couchbase
+docker stack deploy -c $ROOT_PATH/docker-compose.yml couchbase
 
 printf  "$(date) Checking servive"
 while true; do curl -f -u Administrator:password http://127.0.0.1:8091/pools 2>/dev/null; if [ $? -eq 0 ]; then echo -e "\n$(date) Service is READY!"; break; fi; printf  "."; sleep 1; done

@@ -1,22 +1,20 @@
 version: '3.7'
 services:
   gitlab:
-    image: gitlab/gitlab-ce:11.9.8-ce.0
+    image: gitlab/gitlab-ce:11.10.1-ce.0
     hostname: gitlab.olgac.com
     networks:
       - local
-    environment:
-      GITLAB_OMNIBUS_CONFIG: |
-        external_url 'http://gitlab.olgac.com:8880'
-        gitlab_rails['gitlab_shell_ssh_port'] = 8822
     deploy:
       update_config:
         delay: 15s
         monitor: 5s
     ports:
-      - '8443:443'
-      - '8880:80'
-      - '8822:22'
+      - '30443:443'
+      - '30080:80'
+      - '30022:22'
+    environment:
+      - GITLAB_OMNIBUS_CONFIG="external_url 'http://gitlab.olgac.com:30080'; gitlab_rails['gitlab_shell_ssh_port'] = 30022; gitlab_rails['lfs_enabled'] = 30022"
     volumes:
       - gitlab-config:/etc/gitlab
       - gitlab-logs:/var/log/gitlab
