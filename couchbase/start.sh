@@ -25,9 +25,6 @@ curl -v POST http://127.0.0.1:8091/pools/default -d memoryQuota=300 -d indexMemo
 echo "$(date) Setting services"
 curl -v http://127.0.0.1:8091/node/controller/setupServices -d services=kv%2Cn1ql%2Cindex 2>/dev/null
 
-echo "$(date) Setting credentials"
-curl -v http://127.0.0.1:8091/settings/web -d port=8091 -d username=Administrator -d password=password 2>/dev/null
-
 echo "$(date) Setting memory optimized indexes"
 curl -i -u Administrator:password POST http://127.0.0.1:8091/settings/indexes -d 'storageMode=memory_optimized' 2>/dev/null
 
