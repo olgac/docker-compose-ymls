@@ -6,6 +6,8 @@ services:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=admin123!
       - POSTGRES_DB=exampledb
+    ports:
+      - 5432:5432
     deploy:
       update_config:
         delay: 15s
