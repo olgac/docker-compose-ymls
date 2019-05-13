@@ -1,0 +1,18 @@
+version: '3.7'
+services:
+  postgresql:
+    image: postgres:11.2
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin123!
+      - POSTGRES_DB=exampledb
+    deploy:
+      update_config:
+        delay: 15s
+        monitor: 5s
+        order: start-first
+    volumes:
+      - postgresql-data:/var/lib/postgresql
+
+volumes:
+  postgresql-data:
