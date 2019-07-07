@@ -1,0 +1,55 @@
+version: "3.7"
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.2.0
+    hostname: "{{.Node.Hostname}}"
+    environment:
+      - node.name={{.Node.Hostname}}
+      - cluster.name=oms-logs.qa
+      - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
+      - discovery.seed_hosts=elasticsearch
+      - cluster.initial_master_nodes=node1,node2,node3
+      - node.ml=false
+      - xpack.ml.enabled=false
+      - xpack.monitoring.enabled=false
+      - xpack.security.enabled=false
+      - xpack.watcher.enabled=false
+      - bootstrap.memory_lock=false
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    deploy:
+      mode: global
+      endpoint_mode: dnsrr
+      resources:
+        limits:
+          memory: 4G
+  nginx:
+    image: nginx:1.17.1-alpine
+    ports:
+      - 9200:9200
+    deploy:
+      mode: global
+    command: |
+      /bin/sh -c "echo '
+      user nobody nogroup;
+      worker_processes auto;
+      events {
+        worker_connections 1024;
+      }
+      http {
+        client_max_body_size 4g;
+        resolver 127.0.0.11 ipv6=off;
+        server {
+          listen *:9200;
+          location / {
+            proxy_set_header Connection keep-alive;
+            set $$url http://elasticsearch:9200;
+            proxy_pass $$url;
+            proxy_set_header  Host $$http_host;
+            proxy_set_header  X-Real-IP $$remote_addr;
+            proxy_set_header  X-Forwarded-For $$proxy_add_x_forwarded_for;
+          }
+        }
+      }' | tee /etc/nginx/nginx.conf && nginx -t && nginx -g 'daemon off;'"
+volumes:
+  elasticsearch-data:
